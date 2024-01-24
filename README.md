@@ -3,6 +3,7 @@
 # Cogs
 
 Simple cog system made for fun with Three.js and Svelte.
+[Try it out](https://fbalda.github.io/cogs)
 
 ## TODO
 

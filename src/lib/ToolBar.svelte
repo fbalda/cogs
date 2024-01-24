@@ -88,7 +88,7 @@
   />
 
   <button on:click={onReset}>
-    <TrashIcon />
+    <TrashIcon class="trash-icon" />
   </button>
 </div>
 
@@ -99,6 +99,10 @@
     --col-semi-dark: rgb(89, 89, 89);
     --col-highlight: white;
     --col-shadow: rgba(57, 57, 57, 0.8);
+
+    --slider-track-height: 1rem;
+    --slider-thumb-size: 1.5rem;
+    --slider-thumb-shadow: 0px 1px 2px var(--col-shadow);
   }
 
   .wrapper {
@@ -118,24 +122,6 @@
   .wrapper,
   .wrapper * {
     cursor: var(--cursor);
-  }
-
-  input {
-    width: 100%;
-    border-radius: 1rem;
-    background-color: var(--col-semi-dark);
-  }
-
-  input::-webkit-slider-thumb,
-  input::-moz-range-thumb {
-    appearance: none;
-    width: 25px;
-    height: 25px;
-    background-color: white;
-    border-radius: 25px;
-    border: none;
-    box-shadow: 0px 1px 2px 0px var(--col-shadow);
-    cursor: pointer;
   }
 
   .drag-panel {
@@ -184,13 +170,60 @@
     border-radius: 0.4rem;
     cursor: pointer;
     background-color: var(--col-dark);
+    color: white;
     height: 2.5rem;
-    aspect-ratio: 1/1;
+    width: 2.5rem;
+    padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.2rem;
     box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.2);
+  }
+
+  input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    background: transparent;
+  }
+
+  input[type="range"]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: var(--slider-track-height);
+    background: var(--col-semi-dark);
+    border-radius: var(--slider-track-height);
+  }
+
+  input[type="range"]::-moz-range-track {
+    width: 100%;
+    height: var(--slider-track-height);
+    background: var(--col-semi-dark);
+    border-radius: var(--slider-track-height);
+  }
+
+  input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: var(--slider-thumb-size);
+    height: var(--slider-thumb-size);
+    background-color: var(--col-highlight);
+    border-radius: var(--slider-thumb-size);
+    border: none;
+    box-shadow: var(--slider-thumb-shadow);
+    cursor: pointer;
+    margin: none;
+    padding: none;
+    transform: none;
+    margin-top: calc(-0.5 * 25px + 0.5 * var(--slider-track-height));
+  }
+
+  input::-moz-range-thumb {
+    width: var(--slider-thumb-size);
+    height: var(--slider-thumb-size);
+    background-color: var(--col-highlight);
+    border-radius: var(--slider-thumb-size);
+    border: none;
+    box-shadow: var(--slider-thumb-shadow);
+    cursor: pointer;
   }
 
   @media screen and (min-width: 480px) {
