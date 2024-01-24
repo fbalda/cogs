@@ -35,12 +35,15 @@ jobs:
           include: index.html
       - name: "Build"
         run: npm run build
+        env:
+          BASE_URL: ${{ steps.pages.outputs.base_url }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
           path: "dist"
 
   deploy:
+    name: "Deploy"
     environment:
       name: github-pages
       url: ${{steps.deployment.outputs.page_url}}
