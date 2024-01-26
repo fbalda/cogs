@@ -26,13 +26,6 @@ jobs:
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v3
-      - name: Replace favicon
-        uses: jacobtomlinson/gha-find-replace@v3
-        with:
-          find: "placeholder.ico"
-          replace: ${{ vars.FAVICON_URL }}
-          regex: false
-          include: index.html
       - name: "Build"
         run: npm run build
         env:
